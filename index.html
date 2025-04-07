@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 LED Control</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Control LED on ESP32</h1>
+    <button onclick="turnOn()">Turn LED ON</button>
+    <button onclick="turnOff()">Turn LED OFF</button>
+
+    <script>
+        const ESP32_IP = "http://192.168.100.205";  
+
+        function turnOn() {
+            fetch(ESP32_IP + "/LED=ON")
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function turnOff() {
+            fetch(ESP32_IP + "/LED=OFF")
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
